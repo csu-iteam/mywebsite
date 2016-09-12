@@ -1,0 +1,90 @@
+/*
+ *Created by Dell on 2016/9/12 15:07 in changsha
+ *index
+*/
+
+
+.html,body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /*米色背景*/
+    background: url(".img/backgroundPicture.jpg") no-repeat fixed;
+}
+.block2{
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    align-items: center;
+}
+
+.shade{
+    width: 100%;
+    min-height: 100vh;
+    background: #ffffff;
+    z-index: 1;
+    opacity: 0.6;
+    position: fixed;
+}
+.contain{
+    width: 100%;
+    height:100vh;
+    align-items: center;
+    z-index: 2;
+}
+
+.block{
+    display: block;
+    min-height: 30%;
+}
+
+.sign{
+    text-align: center;
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.logo{
+    display: inline-block;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background: url(".img/logoPicture.jpg") repeat center;
+    z-index: 4;
+}
+.introduce{
+    width: 100%;
+    z-index: 4;
+}
+
+.model{
+    padding: 0 8%;
+}
+
+.card{
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #13afaf;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    //position: absolute;
+}
+
+.picture{
+
+}
+
+.detail{
+    width: 100%;
+    height: 180px;
+    background-color: wheat;
+    border-radius: 10px;
+    bottom: -275px;//转变为-120
+    position: relative;
+}
