@@ -51,9 +51,15 @@
         展示
     </div>
 </div>
-<div class="showGround">
-    <div class="note">
-
+<div class="showGround" id="showGround">
+    <div class="note" >
+        <div class="noteTitle">
+            这是标题
+        </div>
+        <hr>
+        <div class="noteDescription">
+            这是描述
+        </div>
     </div>
     <div class="note">
 
@@ -65,6 +71,50 @@
 <div class="foot">
 
 </div>
+<script type="text/javascript" src="javaScript/jquery-3.1.0.min.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            type:"GET",
+            url:"article?type=1",//请求加载blog类型文章
+            success:function(data){
+                var title;
+                var description;
+                var parent;
+                var div;
+                var noteTitle;
+                var noteDescription;
+                var line;
+                if(data.success){
+                    var length=data.data.length;
+                    for(var i=0;i<length;i++){
+                        title=data.data[i].title;
+                        description=data.data[i].description;
+                        div=document.createElement("div");
+                        div.className="note";
+                        noteTitle=document.createElement("div");
+                        noteTitle.className="noteTitle";
+                        noteTitle.innerText=title;
+                        noteDescription=document.createElement("div");
+                        noteDescription.className="noteDescription";
+                        noteDescription.innerText=description;
+                        line=document.createElement("hr");
+                        div.appendChild(noteTitle);
+                        div.appendChild(line);
+                        div.appendChild(noteDescription);
+                        parent=document.getElementById('showGround');
+                        parent.appendChild(div);
+                    }
 
+                }
+                else{
+                    alert("404 not found");
+                }
+            }
+
+        })
+    })
+</script>
 </body>
+
 </html>
