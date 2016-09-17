@@ -1,0 +1,131 @@
+<!--
+ * Created by Dell on 2016/9/17 20:23 in 
+ * message
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="index.css" rel="stylesheet" type="text/css"/>
+    <title>message</title>
+</head>
+<body style="background-image: none">
+<div class="commentList" id="commentList1">
+    <div>
+        <div class="information">
+            <div class="headPhoto">
+
+            </div>
+            <div class="nickName">
+                我是小明
+            </div>
+        </div>
+        <div class="message">
+            <div class="theme">
+                这是一个问题
+            </div>
+            <div class="date">
+
+            </div>
+            <hr>
+            <div>
+                我是否被开除了
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="information">
+            <div class="headPhoto">
+
+            </div>
+            <div class="nickName">
+                我是校长
+            </div>
+        </div>
+        <div class="message">
+            <div>
+                你被开除了
+            </div>
+            <div class="date">
+                2016/12/09 20:30:12
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sendReview">
+
+</div>
+<script>
+    $(function () {
+        ajax({
+            type: GET,
+            url: "localHost1080?type=1",
+            success: function (data) {
+                if (data.success) {
+                    var headPhoto;
+                    var nickName;
+                    var message;
+                    var date;
+                    var headPhotoBox;
+                    var nickNameBox;
+                    var messageBox;
+                    var messageText;
+                    var dateBox;
+                    var div;
+                    var line;
+                    var information;
+                    var parent;
+                    var length = data.data.length;
+
+                    for (var i; i < length; i++) {
+                        headPhoto = data.data[i].headPhoto;//headPhoto代表着评论人的头像
+                        nickName = data.data[i].name;
+                        message = data.data[i].context;
+                        date = data.data[i].createdTime;
+
+                        headPhotoBox = document.createElement("div");
+                        headPhotoBox.className = "headPhoto";
+                        headPhotoBox.innerText = headPhoto;
+
+                        nickNameBox = document.createElement("div");
+                        nickNameBox.className = "nickName";
+                        nickNameBox.innerText = nickName;
+
+                        messageBox = document.createElement("div");
+                        messageBox.className = "message";
+
+                        messageText = document.createElement("div");
+                        messageText.innerText = message;
+
+                        dateBox = document.createElement("div");
+                        dateBox.className = "date";
+                        dateBox.innerText = date;
+
+                        line = document.createElement("hr");
+
+                        information = document.createElement("div");
+                        information.className = "information";
+
+                        parent = document.getElementById('commentList1');
+
+                        information.appendChild(headPhotoBox);
+                        information.appendChild(nickNameBox);
+                        messageBox.appendChild(messageText);
+                        messageBox.appendChild(dateBox);
+                        div.appendChild(information);
+                        div.appendChild(messageBox);
+
+                        parent.appendChild(line);
+                        parent.appendChild(div);
+                    }
+                }
+                else {
+                    alert("404 not found");
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

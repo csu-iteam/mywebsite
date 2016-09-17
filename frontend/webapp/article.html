@@ -7,77 +7,51 @@
 <head>
     <meta charset="UTF-8">
     <link href="index.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="javaScript/article.js"></script>
     <title>article</title>
 </head>
-<body  style="background-image: none">
-<div class="title">
-    <div class="titleLogo">
-        logo
-    </div>
-    <div class="titleButton" id="titleButton1"
-         onmouseover=titleButtonChange('titleButton1');
-         onmouseout=titleButtonRecover('titleButton1');>
-        技术博客
-    </div>
-    <div class="titleButton" id="titleButton2"
-         onmouseover=titleButtonChange('titleButton2');
-         onmouseout=titleButtonRecover('titleButton2');>
-        影评
-    </div>
-    <div class="titleButton" id="titleButton3"
-         onmouseover=titleButtonChange('titleButton3');
-         onmouseout=titleButtonRecover('titleButton3');>
-        随笔
-    </div>
-    <div class="titleButton" id="titleButton4"
-         onmouseover=titleButtonChange('titleButton4');
-         onmouseout=titleButtonRecover('titleButton4');>
-        软件展示
-    </div>
-    <div class="titleButton" id="titleButton5"
-         onmouseover=titleButtonChange('titleButton5');
-         onmouseout=titleButtonRecover('titleButton5');>
-        摄影展示
-    </div>
-    <div class="titleButton" id="titleButton6"
-         onmouseover=titleButtonChange('titleButton6');
-         onmouseout=titleButtonRecover('titleButton6');>
-        留言板
-    </div>
-    <div class="titleButton" id="titleButton7"
-         onmouseover=titleButtonChange('titleButton7');
-         onmouseout=titleButtonRecover('titleButton7');>
-        展示
-    </div>
-</div>
-<div class="showGround" id="showGround">
-    <div class="note" >
-        <div class="noteTitle">
-            这是标题
+<body style="background-image: none">
+<div class="flexBox">
+    <div class="title">
+        <div class="titleLogo">
+            <img src="img/logoPicture.jpg" style="width: 100%;height: 100%;">
         </div>
-        <hr>
-        <div class="noteDescription">
-            这是描述
+        <div class="titleButton">
+            技术博客
+        </div>
+        <div class="titleButton">
+            影评
+        </div>
+        <div class="titleButton">
+            随笔
+        </div>
+        <div class="titleButton">
+            软件展示
+        </div>
+        <div class="titleButton">
+            摄影展示
+        </div>
+        <div class="titleButton">
+            留言板
+        </div>
+        <div class="titleButton">
+            展示
         </div>
     </div>
-    <div class="note">
+    <div class="showGround" id="showGround">
 
     </div>
-    <div class="note">
+    <div class="foot">
 
     </div>
-</div>
-<div class="foot">
-
 </div>
 <script type="text/javascript" src="javaScript/jquery-3.1.0.min.js"></script>
 <script>
-    $(function(){
+    $(function () {
         $.ajax({
-            type:"GET",
-            url:"article?type=1",//请求加载blog类型文章
-            success:function(data){
+            type: "GET",
+            url: "localHost1080?type=1",
+            //url: "article?type=1",//请求加载blog类型文章
+            success: function (data) {
                 var title;
                 var description;
                 var parent;
@@ -85,29 +59,34 @@
                 var noteTitle;
                 var noteDescription;
                 var line;
-                if(data.success){
-                    var length=data.data.length;
-                    for(var i=0;i<length;i++){
-                        title=data.data[i].title;
-                        description=data.data[i].description;
-                        div=document.createElement("div");
-                        div.className="note";
-                        noteTitle=document.createElement("div");
-                        noteTitle.className="noteTitle";
-                        noteTitle.innerText=title;
-                        noteDescription=document.createElement("div");
-                        noteDescription.className="noteDescription";
-                        noteDescription.innerText=description;
-                        line=document.createElement("hr");
+                if (data.success) {
+                    var length = data.data.length;
+                    for (var i = 0; i < length; i++) {
+                        //接受传来的标题和描述
+                        title = data.data[i].title;
+                        description = data.data[i].description;
+                        //建立展示元素
+                        div = document.createElement("div");
+                        div.className = "note";
+
+                        noteTitle = document.createElement("div");
+                        noteTitle.className = "noteTitle";
+                        noteTitle.innerText = title;
+
+                        noteDescription = document.createElement("div");
+                        noteDescription.className = "noteDescription";
+                        noteDescription.innerText = description;
+
+                        line = document.createElement("hr");
+
                         div.appendChild(noteTitle);
                         div.appendChild(line);
                         div.appendChild(noteDescription);
-                        parent=document.getElementById('showGround');
+                        parent = document.getElementById('showGround');
                         parent.appendChild(div);
                     }
-
                 }
-                else{
+                else {
                     alert("404 not found");
                 }
             }
@@ -115,6 +94,7 @@
         })
     })
 </script>
+<script type="text/javascript" src="javaScript/article.js"></script>
 </body>
 
 </html>
